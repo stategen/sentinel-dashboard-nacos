@@ -170,7 +170,7 @@
     </dependencies>
 
     <build>
-        <finalName>sentinel-dashboard</finalName>
+        <finalName>sentinel-dashboard-nacos-${project.version}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
