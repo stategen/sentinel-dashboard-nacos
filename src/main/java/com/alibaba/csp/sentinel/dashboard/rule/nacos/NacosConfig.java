@@ -15,16 +15,22 @@
  */
 package com.alibaba.csp.sentinel.dashboard.rule.nacos;
 
-import com.alibaba.csp.sentinel.dashboard.datasource.entity.rule.*;
-import com.alibaba.csp.sentinel.datasource.Converter;
-import com.alibaba.fastjson.JSON;
-import com.alibaba.nacos.api.config.ConfigFactory;
-import com.alibaba.nacos.api.config.ConfigService;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.List;
+import com.alibaba.csp.sentinel.dashboard.datasource.entity.rule.AuthorityRuleEntity;
+import com.alibaba.csp.sentinel.dashboard.datasource.entity.rule.DegradeRuleEntity;
+import com.alibaba.csp.sentinel.dashboard.datasource.entity.rule.FlowRuleEntity;
+import com.alibaba.csp.sentinel.dashboard.datasource.entity.rule.ParamFlowRuleEntity;
+import com.alibaba.csp.sentinel.dashboard.datasource.entity.rule.SystemRuleEntity;
+import com.alibaba.csp.sentinel.datasource.Converter;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.alibaba.nacos.api.config.ConfigFactory;
+import com.alibaba.nacos.api.config.ConfigService;
 
 /**
  * @author Eric Zhao
@@ -42,7 +48,8 @@ public class NacosConfig {
      */
     @Bean
     public Converter<List<FlowRuleEntity>, String> flowRuleEntityEncoder() {
-        return JSON::toJSONString;
+        return rules -> JSON.toJSONString(rules, SerializerFeature.PrettyFormat);
+        //return JSON::toJSONString;
     }
 
     @Bean
@@ -56,7 +63,8 @@ public class NacosConfig {
      */
     @Bean
     Converter<List<DegradeRuleEntity>, String> degradeRuleEntityEncoder() {
-        return JSON::toJSONString;
+        return rules -> JSON.toJSONString(rules, SerializerFeature.PrettyFormat);
+        //return JSON::toJSONString;
     }
 
     @Bean
@@ -70,7 +78,8 @@ public class NacosConfig {
      */
     @Bean
     public Converter<List<AuthorityRuleEntity>, String> authorityRuleEntityEncoder() {
-        return JSON::toJSONString;
+        return rules -> JSON.toJSONString(rules, SerializerFeature.PrettyFormat);
+        //return JSON::toJSONString;
     }
 
     @Bean
@@ -84,7 +93,8 @@ public class NacosConfig {
      */
     @Bean
     public Converter<List<ParamFlowRuleEntity>, String> paramFlowRuleEntityEncoder() {
-        return JSON::toJSONString;
+        return rules -> JSON.toJSONString(rules, SerializerFeature.PrettyFormat);
+        //return JSON::toJSONString;
     }
 
     @Bean
@@ -98,7 +108,8 @@ public class NacosConfig {
      */
     @Bean
     public Converter<List<SystemRuleEntity>, String> systemRuleEntityEncoder() {
-        return JSON::toJSONString;
+        return rules -> JSON.toJSONString(rules, SerializerFeature.PrettyFormat);
+        //return JSON::toJSONString;
     }
 
     @Bean
